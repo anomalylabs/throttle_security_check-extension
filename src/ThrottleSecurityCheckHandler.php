@@ -84,7 +84,7 @@ class ThrottleSecurityCheckHandler
         $attempts   = $this->getLoginAttempts();
         $expiration = $this->getExpirationTime();
 
-        if ($expiration || $attempts > 2) {
+        if ($expiration || $attempts > 5) {
 
             $this->setLoginAttempts($attempts + 1);
 
