@@ -1,0 +1,34 @@
+{
+    "name": "anomaly/throttle_security_check-extension",
+    "type": "streams-addon",
+    "description": "A security extension that throttles login attempts.",
+    "keywords": [
+        "streams extension",
+        "streams addon",
+        "extension"
+    ],
+    "homepage": "http://anomaly.is/",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "AnomalyLabs, Inc.",
+            "email": "hello@anomaly.is",
+            "homepage": "http://anomaly.is/",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "support@anomaly.is"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\ThrottleSecurityCheckExtension\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-1.0/master": "1.0.x-dev"
+        }
+    }
+}

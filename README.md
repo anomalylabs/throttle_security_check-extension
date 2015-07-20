@@ -1,1 +1,3 @@
-# throttle_security_check-extension
+# Throttle Security Check
+
+A security extension that throttles login attempts.
