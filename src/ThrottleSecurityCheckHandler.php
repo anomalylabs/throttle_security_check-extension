@@ -103,7 +103,7 @@ class ThrottleSecurityCheckHandler
      */
     protected function getLoginAttempts()
     {
-        return $this->cache->get($this->extension->getNamespace('attempts'), 0);
+        return $this->cache->get($this->extension->getNamespace('attempts:' . $this->request->ip()), 0);
     }
 
     /**
@@ -113,7 +113,7 @@ class ThrottleSecurityCheckHandler
      */
     protected function setLoginAttempts($attempts)
     {
-        $this->cache->put($this->extension->getNamespace('attempts'), $attempts, 1);
+        $this->cache->put($this->extension->getNamespace('attempts:' . $this->request->ip()), $attempts, 1);
     }
 
     /**
@@ -123,7 +123,7 @@ class ThrottleSecurityCheckHandler
      */
     protected function getExpirationTime()
     {
-        return $this->cache->get($this->extension->getNamespace('expiration'));
+        return $this->cache->get($this->extension->getNamespace('expiration:' . $this->request->ip()));
     }
 
     /**
@@ -131,6 +131,6 @@ class ThrottleSecurityCheckHandler
      */
     public function setExpirationTime()
     {
-        $this->cache->put($this->extension->getNamespace('expiration'), time() + 60, 1);
+        $this->cache->put($this->extension->getNamespace('expiration:' . $this->request->ip()), time() + 60, 1);
     }
 }
