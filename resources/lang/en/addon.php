@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'name'        => 'Throttle Security Check',
+    'title'       => 'Throttle Security Check',
+    'name'        => 'Throttle Security Check Extension',
     'description' => 'A security extension that throttles login attempts.'
 ];
