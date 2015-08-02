@@ -1,6 +1,6 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension;
 
-use Anomaly\UsersModule\Security\SecurityCheckExtension;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
 /**
  * Class ThrottleSecurityCheckExtension
@@ -10,7 +10,7 @@ use Anomaly\UsersModule\Security\SecurityCheckExtension;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Extension\ThrottleSecurityCheckExtension
  */
-class ThrottleSecurityCheckExtension extends SecurityCheckExtension
+class ThrottleSecurityCheckExtension extends Extension
 {
 
     /**
