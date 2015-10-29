@@ -1,7 +1,7 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension;
 
-use Anomaly\UsersModule\Authenticator\Authenticator;
 use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
 
@@ -40,7 +40,7 @@ class ThrottleSecurityCheckHandler
     /**
      * The authenticator utility.
      *
-     * @var Authenticator
+     * @var UserAuthenticator
      */
     protected $authenticator;
 
@@ -49,13 +49,13 @@ class ThrottleSecurityCheckHandler
      *
      * @param Repository                     $cache
      * @param Request                        $request
-     * @param Authenticator                  $authenticator
+     * @param UserAuthenticator              $authenticator
      * @param ThrottleSecurityCheckExtension $extension
      */
     public function __construct(
         Repository $cache,
         Request $request,
-        Authenticator $authenticator,
+        UserAuthenticator $authenticator,
         ThrottleSecurityCheckExtension $extension
     ) {
         $this->cache         = $cache;
