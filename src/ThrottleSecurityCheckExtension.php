@@ -1,6 +1,10 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension;
 
-use Anomaly\Streams\Platform\Addon\Extension\Extension;
+use Anomaly\ThrottleSecurityCheckExtension\Command\ThrottleLogin;
+use Anomaly\ThrottleSecurityCheckExtension\Command\ThrottleRequest;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Anomaly\UsersModule\User\Security\SecurityCheckExtension;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ThrottleSecurityCheckExtension
@@ -10,7 +14,7 @@ use Anomaly\Streams\Platform\Addon\Extension\Extension;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\Streams\Addon\Extension\ThrottleSecurityCheckExtension
  */
-class ThrottleSecurityCheckExtension extends Extension
+class ThrottleSecurityCheckExtension extends SecurityCheckExtension
 {
 
     /**
@@ -20,5 +24,27 @@ class ThrottleSecurityCheckExtension extends Extension
      * @var string
      */
     protected $provides = 'anomaly.module.users::security_check.throttle';
+
+    /**
+     * Check a login attempt.
+     *
+     * @return bool|Response
+     */
+    public function attempt()
+    {
+        return $this->dispatch(new ThrottleLogin());
+    }
+
+    /**
+     * Check an HTTP request.
+     *
+     * @param UserInterface|null $user
+     * @return bool|Response
+     */
+    public function check(UserInterface $user = null)
+    {
+        return $this->dispatch(new ThrottleRequest());
+    }
+
 
 }
