@@ -43,7 +43,7 @@ class ThrottleSecurityCheckExtension extends SecurityCheckExtension
      */
     public function check(UserInterface $user = null)
     {
-        return $this->dispatch(new ThrottleRequest());
+        return true;
     }
 
 
