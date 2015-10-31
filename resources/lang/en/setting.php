@@ -12,9 +12,5 @@ return [
     'lockout_interval'  => [
         'label'        => 'Lockout Interval',
         'instructions' => 'Specify how many minutes a throttled user is locked out before they can attempt to login again.'
-    ],
-    'error_message'     => [
-        'label'        => 'Error Message',
-        'instructions' => 'Specify the message to display during the lockout interval.'
     ]
 ];

@@ -24,12 +24,5 @@ return [
             'min'           => 1,
             'default_value' => 1
         ]
-    ],
-    'error_message'     => [
-        'required' => true,
-        'type'     => 'anomaly.field_type.text',
-        'config'   => [
-            'default_value' => 'streams::message.429'
-        ]
     ]
 ];

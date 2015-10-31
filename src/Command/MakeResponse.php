@@ -26,10 +26,8 @@ class MakeResponse implements SelfHandling
      */
     public function handle(SettingRepositoryInterface $settings, ResponseFactory $response, Factory $view)
     {
-        $message         = $settings->value('anomaly.extension.throttle_security_check::error_message');
         $lockoutInterval = $settings->value('anomaly.extension.throttle_security_check::lockout_interval', 1);
 
-        return $response->make($view->make('streams::errors/429', compact('message')), 429)
-            ->setTtl($lockoutInterval * 1);
+        return $response->make($view->make('streams::errors/429', []), 429)->setTtl($lockoutInterval * 1);
     }
 }
