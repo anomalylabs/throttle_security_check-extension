@@ -41,7 +41,7 @@ class ThrottleSecurityCheckExtension extends SecurityCheckExtension
      * @param UserInterface $user
      * @return bool|Response
      */
-    public function check(UserInterface $user)
+    public function check(UserInterface $user = null)
     {
         return true;
     }
