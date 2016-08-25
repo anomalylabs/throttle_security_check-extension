@@ -1,7 +1,6 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 
@@ -11,17 +10,16 @@ use Illuminate\Contracts\View\Factory;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\ThrottleSecurityCheckExtension\Command
  */
-class MakeResponse implements SelfHandling
+class MakeResponse
 {
 
     /**
      * Handle the command.
      *
-     * @param SettingRepositoryInterface $settings
-     * @param ResponseFactory            $response
-     * @param Factory                    $view
+     * @param  SettingRepositoryInterface                 $settings
+     * @param  ResponseFactory                            $response
+     * @param  Factory                                    $view
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(SettingRepositoryInterface $settings, ResponseFactory $response, Factory $view)

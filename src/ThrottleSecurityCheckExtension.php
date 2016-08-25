@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\Streams\Addon\Extension\ThrottleSecurityCheckExtension
  */
 class ThrottleSecurityCheckExtension extends SecurityCheckExtension
 {
@@ -38,7 +37,7 @@ class ThrottleSecurityCheckExtension extends SecurityCheckExtension
     /**
      * Check an HTTP request.
      *
-     * @param UserInterface $user
+     * @param  UserInterface $user
      * @return bool|Response
      */
     public function check(UserInterface $user = null)

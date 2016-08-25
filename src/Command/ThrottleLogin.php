@@ -3,7 +3,6 @@
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\ThrottleSecurityCheckExtension\ThrottleSecurityCheckExtension;
 use Anomaly\UsersModule\User\UserAuthenticator;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -14,9 +13,8 @@ use Illuminate\Http\Request;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\ThrottleSecurityCheckExtension\Command
  */
-class ThrottleLogin implements SelfHandling
+class ThrottleLogin
 {
 
     use DispatchesJobs;
@@ -24,11 +22,11 @@ class ThrottleLogin implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Repository                     $cache
-     * @param Request                        $request
-     * @param UserAuthenticator              $authenticator
-     * @param SettingRepositoryInterface     $settings
-     * @param ThrottleSecurityCheckExtension $extension
+     * @param  Repository                     $cache
+     * @param  Request                        $request
+     * @param  UserAuthenticator              $authenticator
+     * @param  SettingRepositoryInterface     $settings
+     * @param  ThrottleSecurityCheckExtension $extension
      * @return bool
      */
     public function handle(
