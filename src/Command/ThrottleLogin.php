@@ -37,8 +37,12 @@ class ThrottleLogin
         ThrottleSecurityCheckExtension $extension
     ) {
         $maxAttempts      = $settings->value('anomaly.extension.throttle_security_check::max_attempts', 5);
-        $lockoutInterval  = $settings->value('anomaly.extension.throttle_security_check::lockout_interval', 1);
-        $throttleInterval = $settings->value('anomaly.extension.throttle_security_check::throttle_interval', 1);
+        $lockoutInterval  = now()->addMinutes(
+            $settings->value('anomaly.extension.throttle_security_check::lockout_interval', 1)
+        );
+        $throttleInterval = now()->addMinutes(
+            $settings->value('anomaly.extension.throttle_security_check::throttle_interval', 1)
+        );
 
         $attempts   = $cache->get($extension->getNamespace('attempts:' . $request->ip()), 1);
         $expiration = $cache->get($extension->getNamespace('expiration:' . $request->ip()));
