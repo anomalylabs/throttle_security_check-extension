@@ -1,4 +1,6 @@
-<?php namespace Anomaly\ThrottleSecurityCheckExtension\Command;
+<?php
+
+namespace Anomaly\ThrottleSecurityCheckExtension\Command;
 
 use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\ThrottleSecurityCheckExtension\ThrottleSecurityCheckExtension;
@@ -6,6 +8,7 @@ use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /**
  * Class ThrottleLogin
@@ -36,11 +39,13 @@ class ThrottleLogin
         SettingRepositoryInterface $settings,
         ThrottleSecurityCheckExtension $extension
     ) {
-        $maxAttempts      = $settings->value('anomaly.extension.throttle_security_check::max_attempts', 5);
-        $lockoutInterval  = now()->addMinutes(
+        $maxAttempts = $settings->value('anomaly.extension.throttle_security_check::max_attempts', 5);
+
+        $lockoutInterval  = (new Carbon('now'))->addMinutes(
             $settings->value('anomaly.extension.throttle_security_check::lockout_interval', 1)
         );
-        $throttleInterval = now()->addMinutes(
+
+        $throttleInterval = (new Carbon('now'))->addMinutes(
             $settings->value('anomaly.extension.throttle_security_check::throttle_interval', 1)
         );
 
@@ -61,5 +66,4 @@ class ThrottleLogin
 
         return true;
     }
-
 }
