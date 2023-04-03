@@ -59,7 +59,7 @@ class ThrottleLogin
 
             $authenticator->logout(); // Just for safe measure.
 
-            return $this->dispatch(new MakeResponse());
+            return $this->dispatchSync(new MakeResponse());
         }
 
         $cache->put($extension->getNamespace('attempts:' . $request->ip()), $attempts + 1, $throttleInterval);

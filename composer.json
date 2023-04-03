@@ -20,6 +20,9 @@
     "support": {
         "email": "support@anomaly.is"
     },
+    "require": {
+        "anomaly/streams-platform": "^1.8"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\ThrottleSecurityCheckExtension\\": "src/"
