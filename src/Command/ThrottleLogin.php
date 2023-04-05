@@ -6,7 +6,6 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\ThrottleSecurityCheckExtension\ThrottleSecurityCheckExtension;
 use Anomaly\UsersModule\User\UserAuthenticator;
 use Illuminate\Contracts\Cache\Repository;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -19,9 +18,6 @@ use Carbon\Carbon;
  */
 class ThrottleLogin
 {
-
-    use DispatchesJobs;
-
     /**
      * Handle the command.
      *
@@ -59,7 +55,7 @@ class ThrottleLogin
 
             $authenticator->logout(); // Just for safe measure.
 
-            return $this->dispatchSync(new MakeResponse());
+            return dispatch_sync(new MakeResponse());
         }
 
         $cache->put($extension->getNamespace('attempts:' . $request->ip()), $attempts + 1, $throttleInterval);
