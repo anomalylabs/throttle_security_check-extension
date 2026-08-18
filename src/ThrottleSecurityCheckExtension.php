@@ -1,7 +1,6 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension;
 
 use Anomaly\ThrottleSecurityCheckExtension\Command\ThrottleLogin;
-use Anomaly\ThrottleSecurityCheckExtension\Command\ThrottleRequest;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Security\SecurityCheckExtension;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +39,7 @@ class ThrottleSecurityCheckExtension extends SecurityCheckExtension
      * @param  UserInterface $user
      * @return bool|Response
      */
-    public function check(UserInterface $user = null)
+    public function check(?UserInterface $user = null)
     {
         return true;
     }
