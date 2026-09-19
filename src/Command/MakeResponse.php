@@ -1,6 +1,5 @@
 <?php namespace Anomaly\ThrottleSecurityCheckExtension\Command;
 
-use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 
@@ -15,17 +14,32 @@ class MakeResponse
 {
 
     /**
+     * The seconds left on the lockout.
+     *
+     * @var int
+     */
+    protected $retryAfter;
+
+    /**
+     * Create a new MakeResponse instance.
+     *
+     * @param int $retryAfter
+     */
+    public function __construct($retryAfter = 0)
+    {
+        $this->retryAfter = $retryAfter;
+    }
+
+    /**
      * Handle the command.
      *
-     * @param  SettingRepositoryInterface                 $settings
      * @param  ResponseFactory                            $response
      * @param  Factory                                    $view
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(SettingRepositoryInterface $settings, ResponseFactory $response, Factory $view)
+    public function handle(ResponseFactory $response, Factory $view)
     {
-        $lockoutInterval = $settings->value('anomaly.extension.throttle_security_check::lockout_interval', 1);
-
-        return $response->make($view->make('streams::errors/429', []), 429)->setTtl($lockoutInterval * 1);
+        return $response->make($view->make('streams::errors/429', []), 429)
+            ->header('Retry-After', max((int)$this->retryAfter, 1));
     }
 }

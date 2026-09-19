@@ -3,6 +3,8 @@
 use Anomaly\ThrottleSecurityCheckExtension\Command\ThrottleLogin;
 use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\UsersModule\User\Security\SecurityCheckExtension;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -44,5 +46,22 @@ class ThrottleSecurityCheckExtension extends SecurityCheckExtension
         return true;
     }
 
+    /**
+     * Return the throttle key for an attempt.
+     *
+     * @param  Request $request
+     * @return string
+     */
+    public function key(Request $request)
+    {
+        $identifier = $request->input(
+            config('anomaly.module.users::config.login', 'email')
+        );
 
+        if (!is_scalar($identifier)) {
+            $identifier = '';
+        }
+
+        return sha1(Str::lower(trim((string)$identifier)) . '|' . $request->ip());
+    }
 }
